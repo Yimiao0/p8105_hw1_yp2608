@@ -33,7 +33,7 @@ an_char = as.numeric(pull(hw_df, vec_char))
 an_factor = as.numeric(pull(hw_df, vec_factor))
 ```
 
-After putting in logical variables, we got 0s and 1s representing FALSE and TRUE; after putting in factor variables, we got different numbers, because logical variables are stored as 0s and 1s in computer and "levels" in factor variables are transformed into numbers in order to represent different levels.
+After putting in logical variables, we got 0s and 1s representing FALSE and TRUE; after putting in factor variables, we got different numbers, because logical variables are stored as 0s and 1s in computer and "levels" in factor variables are transformed into numbers in order to represent different levels. However, as.numeric() function doesn't work for character variables because they can not be represented by numbers.
 
 
 # Problem 2
