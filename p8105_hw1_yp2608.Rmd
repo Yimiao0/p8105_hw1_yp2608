@@ -20,35 +20,42 @@ hw_df = tibble(
 hw_df
 
 mean_samp = mean(pull(hw_df, samp))
-
-mean_samp = mean(pull(hw_df, samp_pos))
-
-# mean_samp = mean(pull(hw_df, samp_char))
-
-# mean_samp = mean(pull(hw_df, samp_factor))
+mean_samp = mean(pull(hw_df, vec_pos))
+mean_samp = mean(pull(hw_df, vec_char))
+mean_samp = mean(pull(hw_df, vec_factor))
 ```
 
 "samp" and "samp_pos" have means, while the means of character vector and factor vector cannot be calculated.
 
 ```{r Prob1_chk2}
-an_lgl = as.numeric(TRUE, FALSE, TRUE)
-
-an_char = as.numeric(c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"))
-
-an_factor = as.numeric(factor(c("men", "men", "men", "women", "women", "women", "alien", "alien", "alien", "alien")))
+an_lgl = as.numeric(pull(hw_df, vec_pos))
+an_char = as.numeric(pull(hw_df, vec_char))
+an_factor = as.numeric(pull(hw_df, vec_factor))
 ```
 
+After putting in logical variables, we got 0s and 1s representing FALSE and TRUE; after putting in factor variables, we got different numbers, because logical variables are stored as 0s and 1s in computer and "levels" in factor variables are transformed into numbers in order to represent different levels.
 
 
 # Problem 2
 
-```{r Prob2_chk1}
+```{r Prob2_chk1, warning = FALSE}
 data("penguins", package = "palmerpenguins")
-#names(penguins)
-skimr::skim(penguins)
+penguins
+names(penguins)
+nrow(penguins)
+ncol(penguins)
+mean(penguins$flipper_length_mm, na.rm = T)
 ```
 
 There are eight columns: `r names(penguins)`.
-It has `r nrow(penguins)` rows and `r ncol` columns.
-The mean flipper length is `r mean(pull(penguins, flipper_length_mm))`
+
+It has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+
+The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = T)` mm.
+
+```{r Prob2_chk2, warning = FALSE}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm)) + geom_point(aes(color = species))
+ggsave("p8105_hw1_yp2608.pdf", height = 4, width = 6)
+```
+
 
