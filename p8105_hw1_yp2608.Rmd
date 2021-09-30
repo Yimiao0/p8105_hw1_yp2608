@@ -1,0 +1,54 @@
+---
+title: "p8105_hw1_yp2608"
+author: "Yimiao Pang"
+date: September 29, 2021
+output: github_document
+---
+
+# Problem 1
+
+```{r Prob1_chk1}
+library(tidyverse)
+
+hw_df = tibble(
+  samp = rnorm(10, mean = 0, sd = 1), 
+  vec_pos = samp > 0, 
+  vec_char = c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"), 
+  vec_factor = factor(c("men", "men", "men", "women", "women", "women", "alien", "alien", "alien", "alien"))
+)
+
+hw_df
+
+mean_samp = mean(pull(hw_df, samp))
+
+mean_samp = mean(pull(hw_df, samp_pos))
+
+# mean_samp = mean(pull(hw_df, samp_char))
+
+# mean_samp = mean(pull(hw_df, samp_factor))
+```
+
+"samp" and "samp_pos" have means, while the means of character vector and factor vector cannot be calculated.
+
+```{r Prob1_chk2}
+an_lgl = as.numeric(TRUE, FALSE, TRUE)
+
+an_char = as.numeric(c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"))
+
+an_factor = as.numeric(factor(c("men", "men", "men", "women", "women", "women", "alien", "alien", "alien", "alien")))
+```
+
+
+
+# Problem 2
+
+```{r Prob2_chk1}
+data("penguins", package = "palmerpenguins")
+#names(penguins)
+skimr::skim(penguins)
+```
+
+There are eight columns: `r names(penguins)`.
+It has `r nrow(penguins)` rows and `r ncol` columns.
+The mean flipper length is `r mean(pull(penguins, flipper_length_mm))`
+
